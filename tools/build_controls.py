@@ -28,3 +28,10 @@ if __name__=='__main__':
 shared=dict(facts=4,initial=[],goal=[0,1,2],actions=[dict(pre=[],add=[3],delete=[]),dict(pre=[3],add=[0,1,2],delete=[]),*[dict(pre=[],add=[i],delete=[]) for i in range(3)]])
 search=[dict(name='h-add selects a three-step plan instead of the two-step optimum',input=shared)]+json.loads((ROOT/'docs/controls.json').read_text())
 (ROOT/'docs/search-controls.json').write_text(json.dumps(search,indent=2)+'\n')
+
+# Static action-availability controls retain original action identities.
+shortcut=[action(add=[2]),action(add=[0]),action([0],[1]),action([1],[2])]
+availability=[control('A representative action is not required: duplicate shortcut and longer detour',3,[],[2],shortcut+[action(add=[2])]),
+ control('Required for optimality, not solvability: one shortcut and longer detour',3,[],[2],shortcut),
+ control('Six facts and eight actions: duplicate shortcuts plus a six-step detour',6,[],[5],[action(add=[5]),action(add=[5]),action(add=[0])]+[action([i-1],[i]) for i in range(1,6)])]+search
+(ROOT/'docs/sensitivity-controls.json').write_text(json.dumps(availability,indent=2)+'\n')
