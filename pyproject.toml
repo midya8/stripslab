@@ -1,12 +1,12 @@
 [build-system]
-requires = ["setuptools>=68"]
+requires = ["setuptools>=77"]
 build-backend = "setuptools.build_meta"
 [project]
 name = "stripslab"
 version = "0.2.0"
 description = "Exact finite positive STRIPS and delete-relaxation witnesses"
 requires-python = ">=3.10"
-license = {text = "MIT"}
+license = "MIT"
 [project.scripts]
 stripslab = "stripslab.__main__:main"
 [tool.setuptools]
