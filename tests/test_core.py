@@ -95,6 +95,17 @@ def reference(x):
             tail=r['states'][t]['exact']['distance'];head=row['distance_from_initial']
             if best is not None and head is not None and tail is not None and head+1+tail==best:expected.append(dict(source=s,action=a,target=t))
     assert r['optimal_plan_edges']==expected
+    assert r['initial_exact']==r['states'][initial]['exact']
+    assert r['initial_relaxed']==r['states'][initial]['relaxed']
+    assert r['goal_states']==goals
+    assert r['reachable_states']==[s for s in range(n) if matrices[0][initial][s]<=n]
+    assert r['reachable_dead_ends']==[row['mask'] for row in r['states'] if row['reachable'] and row['exact']['distance'] is None]
+    assert r['reachable_hidden_dead_ends']==[row['mask'] for row in r['states'] if row['reachable'] and row['exact']['distance'] is None and row['relaxed']['distance'] is not None]
+    assert r['reachable_hadd_overestimates']==[row['mask'] for row in r['states'] if row['reachable'] and row['exact']['distance'] is not None and row['hadd']['value'] is not None and row['hadd']['value']>row['exact']['distance']]
+    for row in r['states']:
+        assert row['goal']==(row['mask'] in goals)
+        assert row['relaxation_hides_dead_end']==(row['exact']['distance'] is None and row['relaxed']['distance'] is not None)
+        assert row['hadd_overestimates']==(row['exact']['distance'] is not None and row['hadd']['value'] is not None and row['hadd']['value']>row['exact']['distance'])
     return r
 
 class Tests(unittest.TestCase):
