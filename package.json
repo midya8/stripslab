@@ -1,1 +1,1 @@
-{"name":"stripslab","version":"0.2.0","type":"module","private":true,"scripts":{"test":"node --test tests/test_engine.mjs tests/test_browser.cjs tests/test_search.mjs tests/test_search_browser.cjs"}}
+{"name":"stripslab","version":"0.3.0","type":"module","private":true,"scripts":{"test":"node --test tests/test_engine.mjs tests/test_browser.cjs tests/test_search.mjs tests/test_search_browser.cjs tests/test_sensitivity.mjs tests/test_sensitivity_browser.cjs"}}

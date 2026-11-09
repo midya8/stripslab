@@ -8,10 +8,12 @@ python - "$tmp/expected.json" <<'PY'
 import json,sys
 from stripslab import audit
 from stripslab.search import audit_search
+from stripslab.sensitivity import audit_sensitivity
 from pathlib import Path
 xs=json.loads(Path('docs/controls.json').read_text())
 ys=json.loads(Path('docs/search-controls.json').read_text())
-Path(sys.argv[1]).write_text(json.dumps(dict(base=[dict(input=c['input'],report=audit(c['input'])) for c in xs],search=[dict(input=c['input'],report=audit_search(c['input'])) for c in ys])))
+zs=json.loads(Path('docs/sensitivity-controls.json').read_text())
+Path(sys.argv[1]).write_text(json.dumps(dict(base=[dict(input=c['input'],report=audit(c['input'])) for c in xs],search=[dict(input=c['input'],report=audit_search(c['input'])) for c in ys],sensitivity=[dict(input=c['input'],report=audit_sensitivity(c['input'])) for c in zs])))
 PY
 uv build --wheel --out-dir "$tmp/dist" "$root"
 uv venv "$tmp/env"
