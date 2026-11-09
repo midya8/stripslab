@@ -62,3 +62,12 @@ Fifteen retained search tasks, 60 runs, 207 selected labels and 415 action decis
 python -m stripslab --search examples/task.json
 stripslab --search examples/task.json -o search-audit.json
 ```
+
+
+## Static action-availability witnesses
+
+[Availability inspector](https://midya8.github.io/stripslab/sensitivity.html) | [Policy, controls and sources](SENSITIVITY.md)
+
+A representative action is not automatically necessary. Enumerate every static action subset and distinguish representative use, necessity for the baseline optimum and necessity for any successful plan. Retain all minimal sufficient sets and all minimal solvability/optimality cuts, with every counterfactual distance, exact plan count, representative and optimal edge. Eighteen controls cover 466 scenarios and 21,731 state rows. Independent Python BFS and JavaScript distance sweeps reproduce complete reports. No probabilities, timed outages or real-world reliability score.
+
+`python -m stripslab --sensitivity examples/task.json` exports the complete bounded certificate. Existing default and `--search` modes remain intact.
