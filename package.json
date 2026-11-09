@@ -1,0 +1,1 @@
+{"name":"stripslab","version":"0.1.0","type":"module","private":true,"scripts":{"test":"node --test tests/test_engine.mjs tests/test_browser.cjs"}}
