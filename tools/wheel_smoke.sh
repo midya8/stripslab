@@ -7,9 +7,11 @@ cd "$root"
 python - "$tmp/expected.json" <<'PY'
 import json,sys
 from stripslab import audit
+from stripslab.search import audit_search
 from pathlib import Path
 xs=json.loads(Path('docs/controls.json').read_text())
-Path(sys.argv[1]).write_text(json.dumps([dict(input=c['input'],report=audit(c['input'])) for c in xs]))
+ys=json.loads(Path('docs/search-controls.json').read_text())
+Path(sys.argv[1]).write_text(json.dumps(dict(base=[dict(input=c['input'],report=audit(c['input'])) for c in xs],search=[dict(input=c['input'],report=audit_search(c['input'])) for c in ys])))
 PY
 uv build --wheel --out-dir "$tmp/dist" "$root"
 uv venv "$tmp/env"
