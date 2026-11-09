@@ -19,7 +19,9 @@ def unique_object(pairs):
 
 def main(argv=None):
     p=argparse.ArgumentParser(description='Exact bounded unit-cost positive STRIPS witnesses')
-    p.add_argument('--search',action='store_true',help='include deterministic search traces')
+    modes=p.add_mutually_exclusive_group()
+    modes.add_argument('--search',action='store_true',help='include deterministic search traces')
+    modes.add_argument('--sensitivity',action='store_true',help='enumerate all static action-availability subsets')
     p.add_argument('input',help='JSON path or - for stdin')
     p.add_argument('-o','--output',help='output JSON path; default stdout')
     args=p.parse_args(argv)
@@ -29,7 +31,10 @@ def main(argv=None):
             raise ValueError('input exceeds 65536 UTF-8 bytes')
         data=json.loads(raw.decode('utf-8'),object_pairs_hook=unique_object,
                         parse_constant=lambda x: (_ for _ in ()).throw(ValueError('nonfinite JSON constant')))
-        if args.search:
+        if args.sensitivity:
+            from .sensitivity import audit_sensitivity
+            result=audit_sensitivity(data)
+        elif args.search:
             from .search import audit_search
             result=audit_search(data)
         else:result=audit(data)
