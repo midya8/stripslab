@@ -48,3 +48,17 @@ This task is unsolvable: either action consumes fact 0. Ignoring deletes creates
 ## Honest limits
 
 Established planning theory, original bounded implementation and synthetic tasks. No PDDL parser/grounder, negative preconditions, conditional effects, costs other than one, concurrency, probabilistic outcomes, partial observability, real-world execution or safety guarantee. Exhaustive all-state auditing is exponential, not a scalable planner or benchmark claim. h-add is not admissible; finite relaxed values do not prove real solvability. Existing theory and software are attributed in METHOD.md. No external planner implementation, dataset or sample task is copied.
+
+
+## Search witnesses: an actual suboptimal h-add plan
+
+[Live search inspector](https://midya8.github.io/stripslab/search.html) | [Search method and sources](SEARCH.md)
+
+Keep the complete state audit and compare zero/h-max/h-add/exact-h-plus search ordering. Inspect every valid frontier, selected label, applicable-action improvement, reopening, returned replay and termination. A new original control returns a three-action h-add plan when the real optimum is two. Exact h-plus is a full relaxed-graph oracle; all estimates are precomputed, so expansion counts are not runtime-speed measurements. Fixed ascending f/g/state-mask ties, goal-pop termination and strict g improvements are explicit.
+
+Fifteen retained search tasks, 60 runs, 207 selected labels and 415 action decisions. Thirteen native tests on Python 3.10-3.13, six Node/Chrome tests, and installed-wheel reproduction of fourteen base plus fifteen search reports. Four installed module origins; both CLIs in both modes. Base inspector and original tests remain intact.
+
+```sh
+python -m stripslab --search examples/task.json
+stripslab --search examples/task.json -o search-audit.json
+```
