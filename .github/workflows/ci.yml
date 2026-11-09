@@ -15,10 +15,12 @@ jobs:
       - run: |
           cp docs/controls.json /tmp/controls.json
           cp docs/search-controls.json /tmp/search-controls.json
+          cp docs/sensitivity-controls.json /tmp/sensitivity-controls.json
           cp examples/task.json /tmp/task.json
           python tools/build_controls.py
           cmp docs/controls.json /tmp/controls.json
           cmp docs/search-controls.json /tmp/search-controls.json
+          cmp docs/sensitivity-controls.json /tmp/sensitivity-controls.json
           cmp examples/task.json /tmp/task.json
       - uses: astral-sh/setup-uv@68559e99cc807c1eb7e9238fd43a15bba460eec2 # v10.3.3
         with:
