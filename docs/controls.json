@@ -1,0 +1,446 @@
+[
+  {
+    "name": "One action, two goals: additive double counting",
+    "input": {
+      "facts": 2,
+      "initial": [],
+      "goal": [
+        0,
+        1
+      ],
+      "actions": [
+        {
+          "pre": [],
+          "add": [
+            0,
+            1
+          ],
+          "delete": []
+        }
+      ]
+    }
+  },
+  {
+    "name": "Consumable resource: relaxed solvability hides a dead end",
+    "input": {
+      "facts": 3,
+      "initial": [
+        0
+      ],
+      "goal": [
+        1,
+        2
+      ],
+      "actions": [
+        {
+          "pre": [
+            0
+          ],
+          "add": [
+            1
+          ],
+          "delete": [
+            0
+          ]
+        },
+        {
+          "pre": [
+            0
+          ],
+          "add": [
+            2
+          ],
+          "delete": [
+            0
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "name": "Restoring a consumed resource costs a real action",
+    "input": {
+      "facts": 3,
+      "initial": [
+        0
+      ],
+      "goal": [
+        1,
+        2
+      ],
+      "actions": [
+        {
+          "pre": [
+            0
+          ],
+          "add": [
+            1
+          ],
+          "delete": [
+            0
+          ]
+        },
+        {
+          "pre": [
+            0
+          ],
+          "add": [
+            2
+          ],
+          "delete": [
+            0
+          ]
+        },
+        {
+          "pre": [],
+          "add": [
+            0
+          ],
+          "delete": []
+        }
+      ]
+    }
+  },
+  {
+    "name": "Two independent goals: max ignores combined effort",
+    "input": {
+      "facts": 2,
+      "initial": [],
+      "goal": [
+        0,
+        1
+      ],
+      "actions": [
+        {
+          "pre": [],
+          "add": [
+            0
+          ],
+          "delete": []
+        },
+        {
+          "pre": [],
+          "add": [
+            1
+          ],
+          "delete": []
+        }
+      ]
+    }
+  },
+  {
+    "name": "All shortest action orders are retained",
+    "input": {
+      "facts": 3,
+      "initial": [],
+      "goal": [
+        0,
+        1,
+        2
+      ],
+      "actions": [
+        {
+          "pre": [],
+          "add": [
+            0
+          ],
+          "delete": []
+        },
+        {
+          "pre": [],
+          "add": [
+            1
+          ],
+          "delete": []
+        },
+        {
+          "pre": [],
+          "add": [
+            2
+          ],
+          "delete": []
+        }
+      ]
+    }
+  },
+  {
+    "name": "Duplicate actions retain separate plan identities",
+    "input": {
+      "facts": 2,
+      "initial": [],
+      "goal": [
+        1
+      ],
+      "actions": [
+        {
+          "pre": [],
+          "add": [
+            0
+          ],
+          "delete": []
+        },
+        {
+          "pre": [],
+          "add": [
+            0
+          ],
+          "delete": []
+        },
+        {
+          "pre": [
+            0
+          ],
+          "add": [
+            1
+          ],
+          "delete": []
+        }
+      ]
+    }
+  },
+  {
+    "name": "Initially satisfied goal: one empty shortest plan",
+    "input": {
+      "facts": 2,
+      "initial": [
+        0
+      ],
+      "goal": [
+        0
+      ],
+      "actions": [
+        {
+          "pre": [
+            0
+          ],
+          "add": [
+            1
+          ],
+          "delete": [
+            0
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "name": "No facts, no actions, empty goal",
+    "input": {
+      "facts": 0,
+      "initial": [],
+      "goal": [],
+      "actions": []
+    }
+  },
+  {
+    "name": "Cyclic prerequisites never start",
+    "input": {
+      "facts": 2,
+      "initial": [],
+      "goal": [
+        0
+      ],
+      "actions": [
+        {
+          "pre": [
+            1
+          ],
+          "add": [
+            0
+          ],
+          "delete": []
+        },
+        {
+          "pre": [
+            0
+          ],
+          "add": [
+            1
+          ],
+          "delete": []
+        }
+      ]
+    }
+  },
+  {
+    "name": "A reachable irreversible trap",
+    "input": {
+      "facts": 3,
+      "initial": [
+        0
+      ],
+      "goal": [
+        2
+      ],
+      "actions": [
+        {
+          "pre": [
+            0
+          ],
+          "add": [
+            1
+          ],
+          "delete": [
+            0
+          ]
+        },
+        {
+          "pre": [
+            0
+          ],
+          "add": [
+            2
+          ],
+          "delete": []
+        }
+      ]
+    }
+  },
+  {
+    "name": "Self loops do not inflate shortest plan counts",
+    "input": {
+      "facts": 2,
+      "initial": [],
+      "goal": [
+        1
+      ],
+      "actions": [
+        {
+          "pre": [],
+          "add": [],
+          "delete": []
+        },
+        {
+          "pre": [],
+          "add": [
+            0
+          ],
+          "delete": []
+        },
+        {
+          "pre": [
+            0
+          ],
+          "add": [
+            0
+          ],
+          "delete": []
+        },
+        {
+          "pre": [
+            0
+          ],
+          "add": [
+            1
+          ],
+          "delete": []
+        }
+      ]
+    }
+  },
+  {
+    "name": "Six facts with ordered prerequisites",
+    "input": {
+      "facts": 6,
+      "initial": [],
+      "goal": [
+        5
+      ],
+      "actions": [
+        {
+          "pre": [],
+          "add": [
+            0
+          ],
+          "delete": []
+        },
+        {
+          "pre": [
+            0
+          ],
+          "add": [
+            1
+          ],
+          "delete": []
+        },
+        {
+          "pre": [
+            1
+          ],
+          "add": [
+            2
+          ],
+          "delete": []
+        },
+        {
+          "pre": [
+            2
+          ],
+          "add": [
+            3
+          ],
+          "delete": []
+        },
+        {
+          "pre": [
+            3
+          ],
+          "add": [
+            4
+          ],
+          "delete": []
+        },
+        {
+          "pre": [
+            4
+          ],
+          "add": [
+            5
+          ],
+          "delete": []
+        }
+      ]
+    }
+  },
+  {
+    "name": "An impossible goal with no actions",
+    "input": {
+      "facts": 1,
+      "initial": [],
+      "goal": [
+        0
+      ],
+      "actions": []
+    }
+  },
+  {
+    "name": "Empty precondition deletes without adding",
+    "input": {
+      "facts": 2,
+      "initial": [
+        0
+      ],
+      "goal": [
+        1
+      ],
+      "actions": [
+        {
+          "pre": [],
+          "add": [],
+          "delete": [
+            0
+          ]
+        },
+        {
+          "pre": [
+            0
+          ],
+          "add": [
+            1
+          ],
+          "delete": []
+        }
+      ]
+    }
+  }
+]
