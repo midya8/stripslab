@@ -24,3 +24,7 @@ def controls():
 if __name__=='__main__':
  (ROOT/'docs/controls.json').write_text(json.dumps(controls(),indent=2)+'\n')
  (ROOT/'examples/task.json').write_text(json.dumps(controls()[1]['input'],indent=2)+'\n')
+# Search control: three individually cheap goals distract h-add from a shared route.
+shared=dict(facts=4,initial=[],goal=[0,1,2],actions=[dict(pre=[],add=[3],delete=[]),dict(pre=[3],add=[0,1,2],delete=[]),*[dict(pre=[],add=[i],delete=[]) for i in range(3)]])
+search=[dict(name='h-add selects a three-step plan instead of the two-step optimum',input=shared)]+json.loads((ROOT/'docs/controls.json').read_text())
+(ROOT/'docs/search-controls.json').write_text(json.dumps(search,indent=2)+'\n')
